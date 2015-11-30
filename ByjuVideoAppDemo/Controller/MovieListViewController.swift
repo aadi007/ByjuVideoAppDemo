@@ -59,6 +59,7 @@ class MovieListViewController: UITableViewController {
                 print("movies data \(self.movies)")
                 if self.movies.count > 0 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.title = "\(self.movies.count) movies"
                         self.tableView.reloadData()
                     })
                 }
