@@ -35,7 +35,7 @@
                                             <rect key="frame" x="61" y="10" width="530.5" height="21"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Foj-x3-iAf"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Foj-x3-iAf"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

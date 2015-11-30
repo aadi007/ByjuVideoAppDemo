@@ -115,36 +115,42 @@ class MovieListViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let video = movies[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier(videoDataCellIdentifier, forIndexPath: indexPath) as! MovieDataViewCell
-            if let name = video.valueForKey("name") as? String {
-                cell.titleLabel.text = name
-            }
-            if let descrip = video.valueForKey("long_description") as? String {
-                cell.descriptionLabel.text = descrip
-            }
-            if let thumbnailURL = video.valueForKey("thumbnail_url") as? String {
-                cell.thumbnailImageView.sd_setImageWithURL(NSURL(string: thumbnailURL)!)
-            }
-            return cell
+        let cell = tableView.dequeueReusableCellWithIdentifier(videoDataCellIdentifier, forIndexPath: indexPath) as! MovieDataViewCell
+        if let name = video.valueForKey("name") as? String {
+            cell.titleLabel.text = name
+        }
+        if let descrip = video.valueForKey("long_description") as? String {
+            cell.descriptionLabel.text = descrip
+        }
+        if let thumbnailURL = video.valueForKey("thumbnail_url") as? String {
+            cell.thumbnailImageView.sd_setImageWithURL(NSURL(string: thumbnailURL)!)
+        }
+        return cell
     }
 
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 64 + labelHeightForRowAtIndexPath(indexPath)
+        return 43 + labelHeightForRowAtIndexPath(indexPath)
     }
     
     func labelHeightForRowAtIndexPath(indexPath: NSIndexPath) -> CGFloat {
+        let video = movies[indexPath.row]
+
+        let calculationTitleView = UILabel()
+        calculationTitleView.numberOfLines = 0
+        let labelAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(16), NSForegroundColorAttributeName : UIColor.blackColor()]
+        calculationTitleView.attributedText = NSAttributedString(string: video.valueForKey("name") as! String, attributes: labelAttributes)
+        let labelViewWidth:CGFloat = CGRectGetWidth(self.view.frame) - 70
+        let titlesize:CGSize = calculationTitleView.sizeThatFits(CGSizeMake(labelViewWidth, 900))
+        print("titlesize \(titlesize.height)")
+        
         let calculationView = UILabel()
         calculationView.numberOfLines = 0
-        let video = movies[indexPath.row]
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 1
         let attributes = [NSFontAttributeName : UIFont.systemFontOfSize(12), NSForegroundColorAttributeName : UIColor.blackColor()]
-        
         calculationView.attributedText = NSAttributedString(string: video.valueForKey("long_description") as! String, attributes: attributes)
         let textViewWidth:CGFloat = CGRectGetWidth(self.view.frame) - 127.5
         let size:CGSize = calculationView.sizeThatFits(CGSizeMake(textViewWidth, 900))
-        return size.height
+        return size.height + titlesize.height
     }
     
     /*
