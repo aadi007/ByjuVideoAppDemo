@@ -11,14 +11,14 @@ import SwiftyJSON
 
 class VideoModel: NSObject {
 
-    var videoURL: String?
+    var thumbnailURL: String?
     var trackName: String?
     var longDescription: String?
     
     init(json:JSON) {
         super.init()
         if let URL = json["artworkUrl60"].string {
-            self.videoURL = URL
+            self.thumbnailURL = URL
         }
         if let trackName = json["trackName"].string {
             self.trackName = trackName

@@ -10,22 +10,48 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SDWebImage
+import CoreData
 
 class MovieListViewController: UITableViewController {
 
     private let videoDataCellIdentifier = "VideoDataCellIdentifier"
-    var movies: [VideoModel] = []
+    var movies = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //check if the local storage has the data present in the DB to be shown 
+        //1
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let fetchRequest = NSFetchRequest(entityName: "Video")
+        
+        //3
+        do {
+            let results =
+            try managedContext.executeFetchRequest(fetchRequest)
+            movies = results as! [NSManagedObject]
+            if movies.count == 0 {
+                print("fetch the contents from the list and store it")
+                fetchVideoData()
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+    }
+    
+    func fetchVideoData() {
         Alamofire.request(Router.UtilRouteManager(UtilRouter.GetMoviewData())).responseJSON { ( response) in
             if response.result.isSuccess {
                 let jsonObj = JSON(response.result.value!)
                 if let resultArray = jsonObj["results"].array {
                     for subjson:JSON in resultArray {
                         let video = VideoModel(json: subjson)
-                        self.movies.append(video)
+                        self.saveVideoData(video)
                     }
                 }
                 print("movies data \(self.movies)")
@@ -38,6 +64,41 @@ class MovieListViewController: UITableViewController {
             else {
                 print("Error \(response.response?.statusCode) message \(response.response?.debugDescription) ")
             }
+        }
+    }
+    
+    func saveVideoData(videoData: VideoModel) {
+        //1
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let entity =  NSEntityDescription.entityForName("Video",
+            inManagedObjectContext:managedContext)
+        
+        let video = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext: managedContext)
+        
+        //3
+        if let name = videoData.trackName {
+            video.setValue(name, forKey: "name")
+        }
+        if let longDescription = videoData.longDescription {
+            video.setValue(longDescription, forKey: "long_description")
+        }
+        if let URL = videoData.thumbnailURL {
+            video.setValue(URL, forKey: "thumbnail_url")
+        }
+        
+        //4
+        do {
+            try managedContext.save()
+            //5
+            movies.append(video)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
         }
     }
 
@@ -58,19 +119,18 @@ class MovieListViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let video: VideoModel = self.movies[indexPath.row] {
+        let video = movies[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(videoDataCellIdentifier, forIndexPath: indexPath) as! MovieDataViewCell
-            if let name = video.trackName {
+            if let name = video.valueForKey("name") as? String {
                 cell.titleLabel.text = name
             }
-            if let descrip = video.longDescription {
+            if let descrip = video.valueForKey("long_description") as? String {
                 cell.descriptionLabel.text = descrip
             }
-            if let thumbnailURL = video.videoURL {
+            if let thumbnailURL = video.valueForKey("thumbnail_url") as? String {
                 cell.thumbnailImageView.sd_setImageWithURL(NSURL(string: thumbnailURL)!)
             }
             return cell
-        }
     }
 
     /*
