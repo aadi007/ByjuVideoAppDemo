@@ -7,6 +7,7 @@ target 'ByjuVideoAppDemo' do
 
 pod 'Alamofire', '~> 3.0'
 pod 'SDWebImage', '~>3.7'
+pod 'ObjectMapper', '~> 1.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 
 use_frameworks!

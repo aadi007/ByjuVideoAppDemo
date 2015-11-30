@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ByjuVideoAppDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A6C46C267171DB73717E36046B5868E</key>
+		<key>66E6E96A07E6ED9A3570969102A7331E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA14F6B9495E8C2F86C6E9B3D7CD59F9</key>
+		<key>7EC4F1E9A4D6C5F7A4D8ACD6FCBC3F62</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E47C10B8E7B7127522C94C571E12BC29</key>
+		<key>9E6DB13AFFCBBD8218FD3CDF95C79C7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E82421CBEE4F9A6C8D5D9FEC459CE24A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
