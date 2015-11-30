@@ -24,14 +24,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1cy-IN-JWu">
-                                            <rect key="frame" x="8" y="8" width="64.5" height="64.5"/>
+                                            <rect key="frame" x="8" y="20.5" width="40" height="40"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="1cy-IN-JWu" secondAttribute="height" multiplier="1:1" id="kMm-YM-cYO"/>
+                                                <constraint firstAttribute="width" constant="40" id="qUA-a7-6U5"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSs-VV-MJk">
-                                            <rect key="frame" x="86" y="8" width="506" height="21"/>
+                                            <rect key="frame" x="61.5" y="10" width="530.5" height="21"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Foj-x3-iAf"/>
@@ -41,7 +42,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mb0-z7-9BT">
-                                            <rect key="frame" x="542" y="37" width="50" height="21"/>
+                                            <rect key="frame" x="542" y="39" width="50" height="21"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="RTu-XW-cAv"/>
@@ -52,7 +53,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3J-sy-8Ec">
-                                            <rect key="frame" x="86" y="37" width="448" height="18"/>
+                                            <rect key="frame" x="61.5" y="39" width="472.5" height="18"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -65,15 +66,22 @@
                                         <constraint firstItem="L3J-sy-8Ec" firstAttribute="leading" secondItem="gSs-VV-MJk" secondAttribute="leading" id="9tZ-Q5-sl5"/>
                                         <constraint firstItem="1cy-IN-JWu" firstAttribute="leading" secondItem="NTo-dF-f1f" secondAttribute="leading" constant="8" id="AyW-hO-YhP"/>
                                         <constraint firstItem="L3J-sy-8Ec" firstAttribute="top" secondItem="gSs-VV-MJk" secondAttribute="bottom" constant="8" id="B0k-mq-ecE"/>
-                                        <constraint firstAttribute="bottom" secondItem="1cy-IN-JWu" secondAttribute="bottom" constant="8" id="I5Y-sY-mzK"/>
-                                        <constraint firstItem="1cy-IN-JWu" firstAttribute="top" secondItem="NTo-dF-f1f" secondAttribute="top" constant="8" id="K6r-b0-I7u"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1cy-IN-JWu" secondAttribute="bottom" constant="8" id="I5Y-sY-mzK"/>
+                                        <constraint firstItem="1cy-IN-JWu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NTo-dF-f1f" secondAttribute="top" constant="8" id="K6r-b0-I7u"/>
                                         <constraint firstItem="gSs-VV-MJk" firstAttribute="leading" secondItem="1cy-IN-JWu" secondAttribute="trailing" constant="13.5" id="Mnb-16-xMh"/>
                                         <constraint firstItem="mb0-z7-9BT" firstAttribute="top" secondItem="gSs-VV-MJk" secondAttribute="bottom" constant="8" id="NCB-bw-teR"/>
                                         <constraint firstItem="gSs-VV-MJk" firstAttribute="top" secondItem="1cy-IN-JWu" secondAttribute="top" id="Qd9-fl-loM"/>
                                         <constraint firstAttribute="trailing" secondItem="gSs-VV-MJk" secondAttribute="trailing" constant="8" id="V0Q-C7-bLP"/>
+                                        <constraint firstItem="gSs-VV-MJk" firstAttribute="top" secondItem="NTo-dF-f1f" secondAttribute="top" constant="10" id="XB8-tK-eRu"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="L3J-sy-8Ec" secondAttribute="bottom" constant="10" id="aN4-x7-uXK"/>
+                                        <constraint firstItem="1cy-IN-JWu" firstAttribute="centerY" secondItem="NTo-dF-f1f" secondAttribute="centerY" id="lDU-o1-Rbm"/>
                                         <constraint firstItem="mb0-z7-9BT" firstAttribute="leading" secondItem="L3J-sy-8Ec" secondAttribute="trailing" constant="8" id="m11-7l-rLB"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Qd9-fl-loM"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
