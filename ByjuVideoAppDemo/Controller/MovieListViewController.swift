@@ -2,22 +2,43 @@
 //  MovieListViewController.swift
 //  ByjuVideoAppDemo
 //
-//  Created by Parth Desai on 30/11/15.
+//  Created by Aadesh Maheshwari on 30/11/15.
 //  Copyright © 2015 @@DI007. All rights reserved.
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SDWebImage
 
 class MovieListViewController: UITableViewController {
 
+    private let videoDataCellIdentifier = "VideoDataCellIdentifier"
+    var movies: [VideoModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        Alamofire.request(Router.UtilRouteManager(UtilRouter.GetMoviewData())).responseJSON { ( response) in
+            if response.result.isSuccess {
+                let jsonObj = JSON(response.result.value!)
+                if let resultArray = jsonObj["results"].array {
+                    for subjson:JSON in resultArray {
+                        let video = VideoModel(json: subjson)
+                        self.movies.append(video)
+                    }
+                }
+                print("movies data \(self.movies)")
+                if self.movies.count > 0 {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tableView.reloadData()
+                    })
+                }
+            }
+            else {
+                print("Error \(response.response?.statusCode) message \(response.response?.debugDescription) ")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +49,29 @@ class MovieListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return movies.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if let video: VideoModel = self.movies[indexPath.row] {
+            let cell = tableView.dequeueReusableCellWithIdentifier(videoDataCellIdentifier, forIndexPath: indexPath) as! MovieDataViewCell
+            if let name = video.trackName {
+                cell.titleLabel.text = name
+            }
+            if let descrip = video.longDescription {
+                cell.descriptionLabel.text = descrip
+            }
+            if let thumbnailURL = video.videoURL {
+                cell.thumbnailImageView.sd_setImageWithURL(NSURL(string: thumbnailURL)!)
+            }
+            return cell
+        }
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
