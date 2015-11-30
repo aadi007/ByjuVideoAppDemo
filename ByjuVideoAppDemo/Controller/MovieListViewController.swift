@@ -38,6 +38,8 @@ class MovieListViewController: UITableViewController {
             if movies.count == 0 {
                 print("fetch the contents from the list and store it")
                 fetchVideoData()
+            } else {
+                self.title = "\(movies.count) movies"
             }
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
