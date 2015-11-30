@@ -68,20 +68,17 @@ class MovieListViewController: UITableViewController {
     }
     
     func saveVideoData(videoData: VideoModel) {
-        //1
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
         
-        //2
         let entity =  NSEntityDescription.entityForName("Video",
             inManagedObjectContext:managedContext)
         
         let video = NSManagedObject(entity: entity!,
             insertIntoManagedObjectContext: managedContext)
         
-        //3
         if let name = videoData.trackName {
             video.setValue(name, forKey: "name")
         }
@@ -92,10 +89,8 @@ class MovieListViewController: UITableViewController {
             video.setValue(URL, forKey: "thumbnail_url")
         }
         
-        //4
         do {
             try managedContext.save()
-            //5
             movies.append(video)
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
@@ -133,6 +128,25 @@ class MovieListViewController: UITableViewController {
             return cell
     }
 
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 64 + labelHeightForRowAtIndexPath(indexPath)
+    }
+    
+    func labelHeightForRowAtIndexPath(indexPath: NSIndexPath) -> CGFloat {
+        let calculationView = UILabel()
+        calculationView.numberOfLines = 0
+        let video = movies[indexPath.row]
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 1
+        let attributes = [NSFontAttributeName : UIFont.systemFontOfSize(12), NSForegroundColorAttributeName : UIColor.blackColor()]
+        
+        calculationView.attributedText = NSAttributedString(string: video.valueForKey("long_description") as! String, attributes: attributes)
+        let textViewWidth:CGFloat = CGRectGetWidth(self.view.frame) - 127.5
+        let size:CGSize = calculationView.sizeThatFits(CGSizeMake(textViewWidth, 900))
+        return size.height
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
