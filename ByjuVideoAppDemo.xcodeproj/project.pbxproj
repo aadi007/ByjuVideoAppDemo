@@ -17,9 +17,6 @@
 		B223E48D1C0C54A100390462 /* ByjuVideoAppDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E48C1C0C54A100390462 /* ByjuVideoAppDemoUITests.swift */; };
 		B223E49E1C0C833C00390462 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E49D1C0C833C00390462 /* MovieListViewController.swift */; };
 		B223E4A21C0C836C00390462 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4A11C0C836C00390462 /* Router.swift */; };
-		B223E4A71C0C844600390462 /* RequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4A41C0C844600390462 /* RequestBody.swift */; };
-		B223E4A81C0C844600390462 /* RequestBodyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4A51C0C844600390462 /* RequestBodyProtocol.swift */; };
-		B223E4A91C0C844600390462 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4A61C0C844600390462 /* RouterProtocol.swift */; };
 		B223E4AE1C0C85FF00390462 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4AD1C0C85FF00390462 /* Util.swift */; };
 		B223E4B01C0C89E900390462 /* MovieDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4AF1C0C89E900390462 /* MovieDataViewCell.swift */; };
 		B223E4B41C0C8C0A00390462 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223E4B31C0C8C0A00390462 /* VideoModel.swift */; };
@@ -59,9 +56,6 @@
 		B223E48E1C0C54A100390462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B223E49D1C0C833C00390462 /* MovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieListViewController.swift; path = Controller/MovieListViewController.swift; sourceTree = "<group>"; };
 		B223E4A11C0C836C00390462 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Router.swift; path = Model/Router/Router.swift; sourceTree = "<group>"; };
-		B223E4A41C0C844600390462 /* RequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestBody.swift; path = Model/Protocols/RequestBody.swift; sourceTree = "<group>"; };
-		B223E4A51C0C844600390462 /* RequestBodyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestBodyProtocol.swift; path = Model/Protocols/RequestBodyProtocol.swift; sourceTree = "<group>"; };
-		B223E4A61C0C844600390462 /* RouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RouterProtocol.swift; path = Model/Protocols/RouterProtocol.swift; sourceTree = "<group>"; };
 		B223E4AD1C0C85FF00390462 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Model/Router/Util.swift; sourceTree = "<group>"; };
 		B223E4AF1C0C89E900390462 /* MovieDataViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieDataViewCell.swift; path = Controller/MovieDataViewCell.swift; sourceTree = "<group>"; };
 		B223E4B31C0C8C0A00390462 /* VideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoModel.swift; path = Model/VideoModel/VideoModel.swift; sourceTree = "<group>"; };
@@ -171,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				B223E4B21C0C8BED00390462 /* VideoModel */,
-				B223E4A31C0C843C00390462 /* Protocols */,
 				B223E4A01C0C835200390462 /* Router */,
 			);
 			name = Model;
@@ -184,16 +177,6 @@
 				B223E4A11C0C836C00390462 /* Router.swift */,
 			);
 			name = Router;
-			sourceTree = "<group>";
-		};
-		B223E4A31C0C843C00390462 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				B223E4A41C0C844600390462 /* RequestBody.swift */,
-				B223E4A51C0C844600390462 /* RequestBodyProtocol.swift */,
-				B223E4A61C0C844600390462 /* RouterProtocol.swift */,
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 		B223E4B21C0C8BED00390462 /* VideoModel */ = {
@@ -398,14 +381,11 @@
 			files = (
 				B223E4A21C0C836C00390462 /* Router.swift in Sources */,
 				B223E4B01C0C89E900390462 /* MovieDataViewCell.swift in Sources */,
-				B223E4A91C0C844600390462 /* RouterProtocol.swift in Sources */,
 				B223E4B41C0C8C0A00390462 /* VideoModel.swift in Sources */,
 				B223E49E1C0C833C00390462 /* MovieListViewController.swift in Sources */,
 				B223E4AE1C0C85FF00390462 /* Util.swift in Sources */,
 				B223E4721C0C54A100390462 /* ByjuVideoAppDemo.xcdatamodeld in Sources */,
-				B223E4A71C0C844600390462 /* RequestBody.swift in Sources */,
 				B223E46A1C0C54A100390462 /* AppDelegate.swift in Sources */,
-				B223E4A81C0C844600390462 /* RequestBodyProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
